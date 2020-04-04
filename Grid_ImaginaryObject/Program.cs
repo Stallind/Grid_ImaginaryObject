@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Grid_ImaginaryObject
 {
@@ -6,7 +7,28 @@ namespace Grid_ImaginaryObject
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            int[,] grid = GenerateGrid();
+        }
+
+        private static int[,] GenerateGrid()
+        {
+            Console.Write($"Enter grid size (eg. 4,4): ");
+            var gridSize = Console.ReadLine();
+            var gridCoords = gridSize.Split(',').Select(int.Parse).ToArray();
+            var gridWidth = gridCoords[0];
+            var gridHeight = gridCoords[1];
+
+            int[,] grid = new int[gridWidth, gridHeight];
+
+            for (int y = 0; y < gridHeight; y++)
+            {
+                for (int x = 0; x < gridWidth; x++)
+                {
+                    grid[x, y] = x + y;
+                }
+            }
+
+            return grid;
         }
     }
 }
