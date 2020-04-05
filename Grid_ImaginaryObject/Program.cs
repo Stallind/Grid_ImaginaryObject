@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Grid_ImaginaryObject
 {
@@ -30,7 +31,7 @@ namespace Grid_ImaginaryObject
                 switch (command)
                 {
                     case 0:
-                        Console.WriteLine("quit simulation and print results");
+                        PresentSimulationResult(objectPositionElement);
                         break;
                     case 1:
                         MoveForward(direction, grid);
@@ -47,6 +48,31 @@ namespace Grid_ImaginaryObject
                 }
             }
         }
+
+        private static void PresentSimulationResult(Point objectPositionElement)
+        {
+            Console.WriteLine("quit simulation and print results");
+
+            if (FailedSimulation)
+            {
+                Console.WriteLine("[-1, -1]");
+                return;
+            }
+
+            Regex regex = new Regex(@"[\D]");
+            var justNumbers = regex.Replace(objectPositionElement.ToString(), "");
+            justNumbers.Split(',').Select(int.Parse).ToArray();
+            var x = justNumbers[0];
+            var y = justNumbers[1];
+            string addCommaToCords = x + y.ToString().Insert(0, ", ");
+            string formattedCords = $"[{addCommaToCords}]";
+
+            // formatting the Point to keep the [x,y] format
+
+            Console.WriteLine(formattedCords);
+            Console.ReadLine();
+        }
+
         private static Point FindObjectElement(int[,] grid)
         {
             for (int y = 0; y < grid.GetLength(1); y++)
