@@ -84,21 +84,25 @@ namespace Grid_ImaginaryObject
                 case "north":
                     ObjectPositionValue += 1;
                     objectPositionElement.Y -= 1;
+                    ValidateObjectMovement(direction, objectPositionElement, grid);
                     Console.WriteLine("moving backwards north");
                     break;
                 case "east":
                     ObjectPositionValue -= grid.GetLength(0);
                     objectPositionElement.X += 1;
+                    ValidateObjectMovement(direction, objectPositionElement, grid);
                     Console.WriteLine("moving backwards east");
                     break;
                 case "south":
                     ObjectPositionValue -= 1;
                     objectPositionElement.Y += 1;
+                    ValidateObjectMovement(direction, objectPositionElement, grid);
                     Console.WriteLine("moving backwards south");
                     break;
                 case "west":
                     ObjectPositionValue += grid.GetLength(0);
                     objectPositionElement.X -= 1;
+                    ValidateObjectMovement(direction, objectPositionElement, grid);
                     Console.WriteLine("moving backwards west");
                     break;
             }
@@ -151,23 +155,48 @@ namespace Grid_ImaginaryObject
                 case "north":
                     ObjectPositionValue -= 1;
                     objectPositionElement.Y -= 1;
+                    ValidateObjectMovement(direction, objectPositionElement, grid);
                     Console.WriteLine($"moving forward north {ObjectPositionValue} {objectPositionElement}");
                     break;
                 case "east":
                     ObjectPositionValue += grid.GetLength(0);
                     objectPositionElement.X += 1;
+                    ValidateObjectMovement(direction, objectPositionElement, grid);
                     Console.WriteLine($"moving forward east {ObjectPositionValue} {objectPositionElement}");
                     break;
                 case "south":
                     ObjectPositionValue += 1;
                     objectPositionElement.Y += 1;
+                    ValidateObjectMovement(direction, objectPositionElement, grid);
                     Console.WriteLine($"moving forward south {ObjectPositionValue} {objectPositionElement}");
                     break;
                 case "west":
                     ObjectPositionValue -= grid.GetLength(0);
                     objectPositionElement.X -= 1;
+                    ValidateObjectMovement(direction, objectPositionElement, grid);
                     Console.WriteLine($"moving forward west {ObjectPositionValue} {objectPositionElement}");
                     break;
+            }
+        }
+
+        private static void ValidateObjectMovement(string direction, Point objectPositionElement, int[,] grid)
+        {
+            bool validMove;
+
+            var gridFieldPoint = FindObjectElement(grid);
+
+            if (direction == "north" || direction == "south")
+            {
+                validMove = objectPositionElement.X == gridFieldPoint.X;
+            }
+            else
+            {
+                validMove = objectPositionElement.Y == gridFieldPoint.Y;
+            }
+
+            if (!validMove)
+            {
+                FailedSimulation = true;
             }
         }
 
