@@ -40,13 +40,27 @@ namespace Grid_ImaginaryObject
                         MoveBackwards(direction, grid);
                         break;
                     case 3:
-                        Console.WriteLine("rotate clockwise 90 degrees (eg north to east)");
+                        direction = TurnClockwise(direction);
                         break;
                     case 4:
                         Console.WriteLine("rotate counter clockwise (eg west to south)");
                         break;
                 }
             }
+        }
+
+        private static string TurnClockwise(string direction)
+        {
+            Console.WriteLine("rotate clockwise 90 degrees (eg north to east)");
+
+            return direction switch
+            {
+                "north" => "east",
+                "east" => "south",
+                "south" => "west",
+                "west" => "north",
+                _ => null
+            };
         }
 
         private static void MoveBackwards(string direction, int[,] grid)
