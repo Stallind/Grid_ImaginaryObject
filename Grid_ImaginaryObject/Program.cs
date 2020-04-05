@@ -15,11 +15,13 @@ namespace Grid_ImaginaryObject
             RegisterInitialObjectPosition(grid);
 
             var commandQueue = RegisterCommands();
-            ExecuteCommandQueue(commandQueue);
+            ExecuteCommandQueue(commandQueue, grid);
         }
 
-        private static void ExecuteCommandQueue(List<int> commandQueue)
+        private static void ExecuteCommandQueue(List<int> commandQueue, int[,] grid)
         {
+            var direction = "north";
+
             foreach (var command in commandQueue)
             {
                 switch (command)
@@ -29,6 +31,7 @@ namespace Grid_ImaginaryObject
                         break;
                     case 1:
                         Console.WriteLine("move forward one step");
+                        MoveForward(direction, grid);
                         break;
                     case 2:
                         Console.WriteLine("move backwards one step");
@@ -40,6 +43,29 @@ namespace Grid_ImaginaryObject
                         Console.WriteLine("rotate counter clockwise (eg west to south)");
                         break;
                 }
+            }
+        }
+
+        private static void MoveForward(string direction, int[,] grid)
+        {
+            switch (direction)
+            {
+                case "north":
+                    ObjectPositionValue -= 1;
+                    Console.WriteLine($"moving forward north {ObjectPositionValue}");
+                    break;
+                case "east":
+                    ObjectPositionValue += grid.GetLength(0);
+                    Console.WriteLine($"moving forward east {ObjectPositionValue}");
+                    break;
+                case "south":
+                    ObjectPositionValue += 1;
+                    Console.WriteLine($"moving forward south {ObjectPositionValue}");
+                    break;
+                case "west":
+                    ObjectPositionValue -= grid.GetLength(0);
+                    Console.WriteLine($"moving forward west {ObjectPositionValue}");
+                    break;
             }
         }
 
