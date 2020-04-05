@@ -118,17 +118,12 @@ namespace Grid_ImaginaryObject
                 return;
             }
 
-            Regex regex = new Regex(@"[\D]");
-            var justNumbers = regex.Replace(objectPositionElement.ToString(), "");
-            justNumbers.Split(',').Select(int.Parse).ToArray();
-            var x = justNumbers[0];
-            var y = justNumbers[1];
-            string addCommaToCords = x + y.ToString().Insert(0, ", ");
-            string formattedCords = $"[{addCommaToCords}]";
-
             // formatting the Point to keep the [x,y] format
 
-            Console.WriteLine(formattedCords);
+            Regex regex = new Regex(@"[^0-9,]");
+            var formattedCoords = regex.Replace(objectPositionElement.ToString(), "");
+
+            Console.WriteLine($"[{formattedCoords}]");
             Console.ReadLine();
         }
 
