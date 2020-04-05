@@ -37,7 +37,7 @@ namespace Grid_ImaginaryObject
                         MoveForward(direction, grid);
                         break;
                     case 2:
-                        Console.WriteLine("move backwards one step");
+                        MoveBackwards(direction, grid);
                         break;
                     case 3:
                         Console.WriteLine("rotate clockwise 90 degrees (eg north to east)");
@@ -46,6 +46,29 @@ namespace Grid_ImaginaryObject
                         Console.WriteLine("rotate counter clockwise (eg west to south)");
                         break;
                 }
+            }
+        }
+
+        private static void MoveBackwards(string direction, int[,] grid)
+        {
+            switch (direction)
+            {
+                case "north":
+                    ObjectPositionValue += 1;
+                    Console.WriteLine("moving backwards north");
+                    break;
+                case "east":
+                    ObjectPositionValue -= grid.GetLength(0);
+                    Console.WriteLine("moving backwards east");
+                    break;
+                case "south":
+                    ObjectPositionValue -= 1;
+                    Console.WriteLine("moving backwards south");
+                    break;
+                case "west":
+                    ObjectPositionValue += grid.GetLength(0);
+                    Console.WriteLine("moving backwards west");
+                    break;
             }
         }
 
