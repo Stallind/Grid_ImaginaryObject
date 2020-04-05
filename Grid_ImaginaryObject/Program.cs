@@ -8,6 +8,11 @@ namespace Grid_ImaginaryObject
         static void Main(string[] args)
         {
             int[,] grid = GenerateGrid();
+
+            foreach (var value in grid)
+            {
+                Console.WriteLine(value);
+            }
         }
 
         private static int[,] GenerateGrid()
@@ -24,7 +29,7 @@ namespace Grid_ImaginaryObject
             {
                 for (int x = 0; x < gridWidth; x++)
                 {
-                    grid[x, y] = x + y;
+                    grid[x, y] = gridWidth * x + y;
                 }
             }
 
