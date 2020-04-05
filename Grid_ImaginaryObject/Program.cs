@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 
@@ -24,13 +25,14 @@ namespace Grid_ImaginaryObject
 
             foreach (var command in commandQueue)
             {
+                var objectPositionElement = FindObjectElement(grid);
+
                 switch (command)
                 {
                     case 0:
                         Console.WriteLine("quit simulation and print results");
                         break;
                     case 1:
-                        Console.WriteLine("move forward one step");
                         MoveForward(direction, grid);
                         break;
                     case 2:
@@ -44,6 +46,21 @@ namespace Grid_ImaginaryObject
                         break;
                 }
             }
+        }
+        private static Point FindObjectElement(int[,] grid)
+        {
+            for (int y = 0; y < grid.GetLength(1); y++)
+            {
+                for (int x = 0; x < grid.GetLength(0); x++)
+                {
+                    if (grid[x, y] == ObjectPositionValue)
+                    {
+                        return new Point(x, y);
+                    }
+                }
+            }
+
+            return new Point(-1, -1);
         }
 
         private static void MoveForward(string direction, int[,] grid)
