@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Runtime.InteropServices;
 
 namespace Grid_ImaginaryObject
 {
     class Program
     {
         public static int ObjectPositionValue { get; set; }
+        public static bool FailedSimulation { get; set; }
         static void Main(string[] args)
         {
             int[,] grid = GenerateGrid();
