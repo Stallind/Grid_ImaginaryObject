@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 
@@ -11,12 +12,47 @@ namespace Grid_ImaginaryObject
         {
             int[,] grid = GenerateGrid();
 
-            foreach (var value in grid)
-            {
-                Console.WriteLine(value);
-            }
-
             RegisterInitialObjectPosition(grid);
+
+            var commandQueue = RegisterCommands();
+            ExecuteCommandQueue(commandQueue);
+        }
+
+        private static void ExecuteCommandQueue(List<int> commandQueue)
+        {
+            foreach (var command in commandQueue)
+            {
+                switch (command)
+                {
+                    case 0:
+                        Console.WriteLine("quit simulation and print results");
+                        break;
+                    case 1:
+                        Console.WriteLine("move forward one step");
+                        break;
+                    case 2:
+                        Console.WriteLine("move backwards one step");
+                        break;
+                    case 3:
+                        Console.WriteLine("rotate clockwise 90 degrees (eg north to east)");
+                        break;
+                    case 4:
+                        Console.WriteLine("rotate counter clockwise (eg west to south)");
+                        break;
+                }
+            }
+        }
+
+        private static List<int> RegisterCommands()
+        {
+            Console.Write($"{Environment.NewLine}Enter command input: ");
+
+            // Same thing here, commands input format follow the instuction example: x,x,x,x,x,x
+
+            var commands = Console.ReadLine();
+            var commandQueue = commands.Split(',').Select(int.Parse).ToList();
+
+            return commandQueue;
         }
 
         private static void RegisterInitialObjectPosition(int[,] grid)
