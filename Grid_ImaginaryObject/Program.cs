@@ -43,10 +43,24 @@ namespace Grid_ImaginaryObject
                         direction = TurnClockwise(direction);
                         break;
                     case 4:
-                        Console.WriteLine("rotate counter clockwise (eg west to south)");
+                        direction = TurnCounterClockwise(direction);
                         break;
                 }
             }
+        }
+
+        private static string TurnCounterClockwise(string direction)
+        {
+            Console.WriteLine("rotate counter clockwise (eg west to south)");
+
+            return direction switch
+            {
+                "north" => "west",
+                "west" => "south",
+                "south" => "east",
+                "east" => "north",
+                _ => null
+            };
         }
 
         private static string TurnClockwise(string direction)
