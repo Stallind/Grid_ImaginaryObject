@@ -34,10 +34,10 @@ namespace Grid_ImaginaryObject
                         PresentSimulationResult(objectPositionElement);
                         break;
                     case 1:
-                        MoveForward(direction, grid);
+                        MoveForward(direction, grid, objectPositionElement);
                         break;
                     case 2:
-                        MoveBackwards(direction, grid);
+                        MoveBackwards(direction, grid, objectPositionElement);
                         break;
                     case 3:
                         direction = TurnClockwise(direction);
@@ -77,24 +77,28 @@ namespace Grid_ImaginaryObject
             };
         }
 
-        private static void MoveBackwards(string direction, int[,] grid)
+        private static void MoveBackwards(string direction, int[,] grid, Point objectPositionElement)
         {
             switch (direction)
             {
                 case "north":
                     ObjectPositionValue += 1;
+                    objectPositionElement.Y -= 1;
                     Console.WriteLine("moving backwards north");
                     break;
                 case "east":
                     ObjectPositionValue -= grid.GetLength(0);
+                    objectPositionElement.X += 1;
                     Console.WriteLine("moving backwards east");
                     break;
                 case "south":
                     ObjectPositionValue -= 1;
+                    objectPositionElement.Y += 1;
                     Console.WriteLine("moving backwards south");
                     break;
                 case "west":
                     ObjectPositionValue += grid.GetLength(0);
+                    objectPositionElement.X -= 1;
                     Console.WriteLine("moving backwards west");
                     break;
             }
@@ -140,25 +144,29 @@ namespace Grid_ImaginaryObject
             return new Point(-1, -1);
         }
 
-        private static void MoveForward(string direction, int[,] grid)
+        private static void MoveForward(string direction, int[,] grid, Point objectPositionElement)
         {
             switch (direction)
             {
                 case "north":
                     ObjectPositionValue -= 1;
-                    Console.WriteLine($"moving forward north {ObjectPositionValue}");
+                    objectPositionElement.Y -= 1;
+                    Console.WriteLine($"moving forward north {ObjectPositionValue} {objectPositionElement}");
                     break;
                 case "east":
                     ObjectPositionValue += grid.GetLength(0);
-                    Console.WriteLine($"moving forward east {ObjectPositionValue}");
+                    objectPositionElement.X += 1;
+                    Console.WriteLine($"moving forward east {ObjectPositionValue} {objectPositionElement}");
                     break;
                 case "south":
                     ObjectPositionValue += 1;
-                    Console.WriteLine($"moving forward south {ObjectPositionValue}");
+                    objectPositionElement.Y += 1;
+                    Console.WriteLine($"moving forward south {ObjectPositionValue} {objectPositionElement}");
                     break;
                 case "west":
                     ObjectPositionValue -= grid.GetLength(0);
-                    Console.WriteLine($"moving forward west {ObjectPositionValue}");
+                    objectPositionElement.X -= 1;
+                    Console.WriteLine($"moving forward west {ObjectPositionValue} {objectPositionElement}");
                     break;
             }
         }
