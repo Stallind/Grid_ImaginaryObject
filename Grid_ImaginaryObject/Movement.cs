@@ -9,36 +9,30 @@ namespace Grid_ImaginaryObject
         public void MoveForward(string direction, int[,] grid, Point objectPositionElement)
         {
             var helper = new MovementHelper();
+
             switch (direction)
             {
                 case "north":
                     ObjectPositionValue -= 1;
                     objectPositionElement.Y -= 1;
-                    helper.ValidateObjectMovement(direction, objectPositionElement, grid);
-                    Console.WriteLine($"moving forward north {ObjectPositionValue} {objectPositionElement}");
                     break;
 
                 case "east":
                     ObjectPositionValue += grid.GetLength(0);
                     objectPositionElement.X += 1;
-                    helper.ValidateObjectMovement(direction, objectPositionElement, grid);
-                    Console.WriteLine($"moving forward east {ObjectPositionValue} {objectPositionElement}");
                     break;
 
                 case "south":
                     ObjectPositionValue += 1;
                     objectPositionElement.Y += 1;
-                    helper.ValidateObjectMovement(direction, objectPositionElement, grid);
-                    Console.WriteLine($"moving forward south {ObjectPositionValue} {objectPositionElement}");
                     break;
 
                 case "west":
                     ObjectPositionValue -= grid.GetLength(0);
                     objectPositionElement.X -= 1;
-                    helper.ValidateObjectMovement(direction, objectPositionElement, grid);
-                    Console.WriteLine($"moving forward west {ObjectPositionValue} {objectPositionElement}");
                     break;
             }
+            helper.ValidateObjectMovement(direction, objectPositionElement, grid);
         }
 
         public void MoveBackwards(string direction, int[,] grid, Point objectPositionElement)
@@ -49,31 +43,24 @@ namespace Grid_ImaginaryObject
                 case "north":
                     ObjectPositionValue += 1;
                     objectPositionElement.Y -= 1;
-                    helper.ValidateObjectMovement(direction, objectPositionElement, grid);
-                    Console.WriteLine("moving backwards north");
                     break;
 
                 case "east":
                     ObjectPositionValue -= grid.GetLength(0);
                     objectPositionElement.X += 1;
-                    helper.ValidateObjectMovement(direction, objectPositionElement, grid);
-                    Console.WriteLine("moving backwards east");
                     break;
 
                 case "south":
                     ObjectPositionValue -= 1;
                     objectPositionElement.Y += 1;
-                    helper.ValidateObjectMovement(direction, objectPositionElement, grid);
-                    Console.WriteLine("moving backwards south");
                     break;
 
                 case "west":
                     ObjectPositionValue += grid.GetLength(0);
                     objectPositionElement.X -= 1;
-                    helper.ValidateObjectMovement(direction, objectPositionElement, grid);
-                    Console.WriteLine("moving backwards west");
                     break;
             }
+            helper.ValidateObjectMovement(direction, objectPositionElement, grid);
         }
 
         public string TurnClockwise(string direction)
