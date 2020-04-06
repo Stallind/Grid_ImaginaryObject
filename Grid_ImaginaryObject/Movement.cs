@@ -42,22 +42,22 @@ namespace Grid_ImaginaryObject
             {
                 case "north":
                     ObjectPositionValue += 1;
-                    objectPositionElement.Y -= 1;
+                    objectPositionElement.Y += 1;
                     break;
 
                 case "east":
                     ObjectPositionValue -= grid.GetLength(0);
-                    objectPositionElement.X += 1;
+                    objectPositionElement.X -= 1;
                     break;
 
                 case "south":
                     ObjectPositionValue -= 1;
-                    objectPositionElement.Y += 1;
+                    objectPositionElement.Y -= 1;
                     break;
 
                 case "west":
                     ObjectPositionValue += grid.GetLength(0);
-                    objectPositionElement.X -= 1;
+                    objectPositionElement.X += 1;
                     break;
             }
             helper.ValidateObjectMovement(direction, objectPositionElement, grid);
